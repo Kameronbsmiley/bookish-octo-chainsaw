@@ -1,42 +1,53 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://SCENES/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
+[ext_resource path="res://SCENES/TileMap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SCRIPTS/Area2D.gd" type="Script" id=4]
+[ext_resource path="res://SCENES/Exit.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SCENES/Level1.tscn" type="PackedScene" id=6]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+[sub_resource type="RectangleShape2D" id=5]
 
-[sub_resource type="TileSet" id=2]
-0/name = "box.png 0"
-0/texture = ExtResource( 2 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 16, 16 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 1 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
+[node name="Test" type="Node2D"]
 
-[node name="Node2D" type="Node2D"]
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -542.0
+margin_top = -343.0
+margin_right = 575.0
+margin_bottom = 250.0
+color = Color( 0.533333, 0.533333, 0.34902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Switch" type="Area2D" parent="."]
+position = Vector2( -158.586, 15.2929 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Switch"]
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="Switch"]
+texture = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 24.3852, -5.98795 )
+position = Vector2( 13.5307, -103.679 )
 
-[node name="TileMap" type="TileMap" parent="."]
-modulate = Color( 0, 0, 0, 1 )
-tile_set = SubResource( 2 )
-cell_size = Vector2( 16, 16 )
-format = 1
-tile_data = PoolIntArray( -262133, 0, 0, -196597, 0, 0, -131061, 0, 0, -65525, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0 )
+[node name="TileMap" parent="." instance=ExtResource( 3 )]
+tile_data = PoolIntArray( -786445, 0, 0, -786444, 0, 0, -786443, 0, 0, -786442, 0, 0, -786441, 0, 0, -786440, 0, 0, -786439, 0, 0, -786438, 0, 0, -786437, 0, 0, -786436, 0, 0, -786435, 0, 0, -786434, 0, 0, -786433, 0, 0, -851968, 0, 0, -851967, 0, 0, -851966, 0, 0, -851965, 0, 0, -851964, 0, 0, -851963, 0, 0, -851962, 0, 0, -851961, 0, 0, -851960, 0, 0, -851959, 0, 0, -851958, 0, 0, -851957, 0, 0, -851956, 0, 0, -851955, 0, 0, -851954, 0, 0, -851953, 0, 0, -720909, 0, 0, -786426, 2, 0, -786417, 0, 0, -655373, 0, 0, -720890, 2, 0, -720881, 0, 0, -589837, 0, 0, -655354, 2, 0, -655345, 0, 0, -524301, 0, 0, -589818, 2, 0, -589809, 0, 0, -458765, 0, 0, -524282, 0, 0, -524273, 0, 0, -393229, 0, 0, -458746, 0, 0, -458737, 0, 0, -327693, 0, 0, -393210, 0, 0, -393201, 0, 0, -262157, 0, 0, -262156, 1, 0, -262155, 1, 0, -262154, 1, 0, -262153, 1, 0, -262152, 1, 0, -262151, 0, 0, -327674, 0, 0, -327673, 1, 0, -327672, 1, 0, -327671, 1, 0, -327670, 1, 0, -327669, 1, 0, -327668, 1, 0, -327667, 1, 0, -327666, 1, 0, -327665, 0, 0, -196621, 0, 0, -196615, 0, 0, -262138, 0, 0, -262129, 0, 0, -131085, 0, 0, -131079, 0, 0, -196602, 0, 0, -196593, 0, 0, -65549, 0, 0, -65543, 0, 0, -131066, 0, 0, -131057, 0, 0, -13, 0, 0, -7, 0, 0, -65530, 0, 0, -65521, 0, 0, 65523, 0, 0, 65529, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 131059, 0, 0, 131060, 0, 0, 131061, 0, 0, 131062, 0, 0, 131063, 0, 0, 131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 131067, 0, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 41.2725, -88.8944 )
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="Exit" parent="." instance=ExtResource( 5 )]
+position = Vector2( 63.9081, 10.0793 )
+level_to_switch = ExtResource( 6 )
+
+[connection signal="body_entered" from="Switch" to="TileMap" method="_on_Switch_body_entered"]
+[connection signal="body_entered" from="Switch" to="Switch" method="_on_Area2D_body_entered"]
