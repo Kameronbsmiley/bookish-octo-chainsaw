@@ -1,6 +1,6 @@
 extends Area2D
 
-export var level_to_switch: PackedScene
+#export var level_to_switch: PackedScene
 
 
 

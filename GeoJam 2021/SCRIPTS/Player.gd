@@ -5,9 +5,13 @@ var velocity = Vector2.ZERO
 export var acceleration = 5
 export var friction = 5
 export var gravity = 20
+
 #export var speed = 300
 #export var jumpforce = 300
-export var big_square = "res://ASSETS/box.png"
+export var basic_cube_sprite = preload("res://ASSETS/box.png")
+export var dash_triangle_sprite = preload("res://ASSETS/Triangle.png")
+export var bouncy_circle_sprite = preload("res://ASSETS/Circle.png")
+
 
 onready var tilemap = "../TileMap"
 
@@ -30,13 +34,21 @@ func _physics_process(delta):
 	match current_shape:
 		
 		basic_cube:
+			$Sprite.rotation_degrees = 0
+			$Sprite.texture = basic_cube_sprite
+			$Sprite.self_modulate = Color.brown
+			scale = Vector2(1,1)
 			movement(20,200,200, delta)
+
 		big_cube:
+			$Sprite.rotation_degrees = 0
+			$Sprite.texture = basic_cube_sprite
+			$Sprite.self_modulate = Color.coral
+			scale = Vector2(2,2)
 			velocity += Vector2.DOWN * delta * 200
 
 
 			var collision = move_and_collide(velocity)
-			
 			if !collision:
 				return
 			if collision.collider is TileMap:
@@ -47,13 +59,22 @@ func _physics_process(delta):
 					$CPUParticles2D.emitting = true
 				collision.collider.break_blocks(tile_pos)
 				$CPUParticles2D.emitting = true
-				
-#				print("tile_name")
+
 
 		dash_triangle:
+			$Sprite.rotation_degrees = 0
+			$Sprite.texture = dash_triangle_sprite
+			$Sprite.self_modulate = Color.darkgoldenrod
+			scale = Vector2(1,1)
+
+
 			velocity.y = 0
-			if Input.is_action_pressed("click"):	
+			if Input.is_action_pressed("click"):
 				$Sprite.scale = Vector2(2,0.5)
+				if global_position.x > get_global_mouse_position().x:
+					$Sprite.rotation_degrees = 270
+				else:
+					$Sprite.rotation_degrees = 90
 				time_stop = true
 			if Input.is_action_just_released("click"):
 				time_stop = false
@@ -64,34 +85,27 @@ func _physics_process(delta):
 
 			
 		bouncy_circle:
+			$Sprite.texture = bouncy_circle_sprite
+			$Sprite.self_modulate = Color.blue
+			scale = Vector2(1,1)
 			Input.action_release("left")
 			Input.action_release("right")
 			Input.action_press("jump")
 			movement(10,100,400, delta)
 
 
-
-
-
 func movement(gravity, speed, jumpforce, delta): # Will take variables based on current switch state
 	var hdir = Input.get_action_strength("right") - Input.get_action_strength("left") # Get movement direction (horizontal direction)
 	
 	velocity.x = hdir * speed
-	
-	
-	
-	
-	
 	velocity.y +=gravity
-	
 	velocity.y = clamp(velocity.y, -800, 800)
-	
+
 
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = -jumpforce
-	
+
 	velocity = move_and_slide(velocity, Vector2.UP)
-#	print(velocity)
 
 
 func switch_shape():
@@ -100,23 +114,16 @@ func switch_shape():
 		
 	if Input.is_action_just_pressed("switch_1") or (current_shape == dash_triangle and is_on_wall()):
 		current_shape = basic_cube
-		$Sprite.self_modulate = Color.brown
-		scale = Vector2(1,1)
 		Input.action_release("jump")
-		
+
 	if Input.is_action_just_pressed("switch_2"):
-		velocity = Vector2.ZERO
 		current_shape = big_cube
-		$Sprite.self_modulate = Color.coral
-		scale = Vector2(2,2)
-		
-	if Input.is_action_just_pressed("switch_3"):
 		velocity = Vector2.ZERO
+
+	if Input.is_action_just_pressed("switch_3"):
 		current_shape = dash_triangle
-		$Sprite.self_modulate = Color.darkgoldenrod
-		scale = Vector2(1,1)
-		
+		velocity = Vector2.ZERO
+
 	if Input.is_action_just_pressed("switch_4"):
 		current_shape = bouncy_circle
-		$Sprite.self_modulate = Color.blue
-		scale = Vector2(1,1)
+		
