@@ -1,19 +1,28 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
+[ext_resource path="res://ASSETS/Circle.png" type="Texture" id=3]
+[ext_resource path="res://ASSETS/Triangle.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7.9, 7.9 )
+extents = Vector2( 8, 7.95 )
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=2]
 max_value = 2.0
 _data = [ Vector2( 0, 1.96136 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.15478, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 0.246094, 0.13266, 0, 1, 0.130371, 0.0554897, 0.0122223, 1 )
 
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.45 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 0.44043, 0.44043, 0.44043, 1, 0.233398, 0.231575, 0.231575, 1 )
+
 [node name="Player" type="KinematicBody2D"]
+z_index = 2
 collision_mask = 16
 script = ExtResource( 1 )
 
@@ -22,7 +31,6 @@ position = Vector2( 0, -8 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, -8 )
 shape = SubResource( 1 )
 
@@ -43,5 +51,52 @@ initial_velocity_random = 0.5
 linear_accel = 50.0
 angle = 45.0
 angle_random = 1.0
-scale_amount_curve = SubResource( 3 )
-color_ramp = SubResource( 2 )
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Dust" type="CPUParticles2D" parent="."]
+modulate = Color( 0.807843, 0.188235, 0.188235, 1 )
+show_behind_parent = true
+position = Vector2( 0, -2.31247 )
+z_index = 1
+z_as_relative = false
+emitting = false
+amount = 15
+lifetime = 0.3
+one_shot = true
+local_coords = false
+texture = ExtResource( 3 )
+emission_shape = 1
+emission_sphere_radius = 3.72
+direction = Vector2( -1, 0 )
+gravity = Vector2( 0, -5 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+angular_velocity = -30.0
+angular_velocity_random = 1.0
+linear_accel = 5.0
+damping = 5.0
+angle_random = 1.0
+scale_amount = 0.4
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 5 )
+
+[node name="next_shape" type="Sprite" parent="."]
+position = Vector2( 16, -8 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 4 )
+
+[node name="previous_shape" type="Sprite" parent="."]
+position = Vector2( -16, -8 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.4, 0.4 )
+process_mode = 0
+smoothing_enabled = true
