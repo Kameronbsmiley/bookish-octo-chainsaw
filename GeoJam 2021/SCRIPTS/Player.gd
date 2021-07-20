@@ -27,12 +27,14 @@ enum {
 	big_cube
 }
 
-var current_shape_list = 4
+var current_shape_list = 0
 
 var current_shape = basic_cube
 
 func _ready():
 	$Sprite.self_modulate = Color.brown
+	next_shape.visible = false
+	previous_shape.visible = false
 
 func _physics_process(delta):
 	switch_shape()
@@ -186,7 +188,8 @@ func switch_shape():
 	current_shape = clamp(current_shape, 0, current_shape_list)
 	
 
-
+func add_shape(_arg):
+	current_shape_list += 1
 
 
 
