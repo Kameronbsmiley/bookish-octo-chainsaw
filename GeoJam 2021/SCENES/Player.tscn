@@ -1,21 +1,20 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
 [ext_resource path="res://ASSETS/Circle.png" type="Texture" id=3]
 [ext_resource path="res://ASSETS/Triangle.png" type="Texture" id=4]
-[ext_resource path="res://SCRIPTS/AnimationPlayer.gd" type="Script" id=5]
 [ext_resource path="res://ASSETS/Bungee-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://SCRIPTS/CanvasLayer.gd" type="Script" id=7]
 [ext_resource path="res://SCRIPTS/Popup.gd" type="Script" id=8]
 
-[sub_resource type="Curve" id=12]
+[sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.45 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=13]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 0.44043, 0.44043, 0.44043, 1, 0.233398, 0.231575, 0.231575, 1 )
 
-[sub_resource type="Curve" id=14]
+[sub_resource type="Curve" id=3]
 max_value = 2.0
 _data = [ Vector2( 0, 1.96136 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.15478, 0.0, 0, 0 ]
 
@@ -25,7 +24,7 @@ colors = PoolColorArray( 0.246094, 0.13266, 0, 1, 0.130371, 0.0554897, 0.0122223
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 8, 7.95 )
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=6]
 resource_name = "Death"
 length = 1.5
 tracks/0/type = "value"
@@ -80,7 +79,7 @@ tracks/3/keys = {
 [sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=9]
@@ -169,8 +168,8 @@ linear_accel = 5.0
 damping = 5.0
 angle_random = 1.0
 scale_amount = 0.4
-scale_amount_curve = SubResource( 12 )
-color_ramp = SubResource( 13 )
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2( 0, -0.283073 )
@@ -189,7 +188,7 @@ initial_velocity_random = 0.5
 linear_accel = 50.0
 angle = 45.0
 angle_random = 1.0
-scale_amount_curve = SubResource( 14 )
+scale_amount_curve = SubResource( 3 )
 color_ramp = SubResource( 4 )
 
 [node name="next_shape" type="Sprite" parent="."]
@@ -212,8 +211,7 @@ shape = SubResource( 5 )
 script = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
-anims/Death = SubResource( 15 )
-script = ExtResource( 5 )
+anims/Death = SubResource( 6 )
 
 [node name="box" type="Sprite" parent="CanvasLayer/AnimationPlayer"]
 modulate = Color( 0, 0, 0, 1 )
@@ -252,7 +250,7 @@ margin_left = 424.0
 margin_top = 424.0
 margin_right = 597.0
 margin_bottom = 447.0
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 8 )
 text = "Sweet! Continue!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -281,7 +279,7 @@ margin_left = 424.0
 margin_top = 424.0
 margin_right = 597.0
 margin_bottom = 447.0
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 8 )
 text = "Sweet! Continue!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -310,7 +308,7 @@ margin_left = 424.0
 margin_top = 424.0
 margin_right = 597.0
 margin_bottom = 447.0
-custom_fonts/font = SubResource( 16 )
+custom_fonts/font = SubResource( 8 )
 text = "Sweet! Continue!"
 __meta__ = {
 "_edit_use_anchors_": false
