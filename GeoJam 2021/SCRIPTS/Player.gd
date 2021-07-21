@@ -37,7 +37,7 @@ func _ready():
 	$Sprite.self_modulate = Color.brown
 	next_shape.visible = false
 	previous_shape.visible = false
-
+	$Camera2D.pause_mode = Node.PAUSE_MODE_PROCESS
 
 func _physics_process(delta):
 	switch_shape()
@@ -201,6 +201,7 @@ func add_shape(_arg):
 
 func die():
 	dead = true
+	$PlayerAnimation.play("Death")
 	$CanvasLayer/AnimationPlayer.play("Death")
 	yield(get_tree().create_timer(0.75), "timeout")
 	if checkpoint != null:
@@ -210,10 +211,18 @@ func die():
 func respawn(checkpoint_pos):
 	self.position = checkpoint_pos
 
-
-
-
-
+func shape_popup(shape_to_show):
+	match shape_to_show:
+		
+		1:
+			$CanvasLayer/CirclePopup.visible = true
+			get_tree().paused = true
+		2:
+			$CanvasLayer/TrianglePopup.visible = true
+			get_tree().paused = true
+		3:
+			$CanvasLayer/CubePopup.visible = true
+			get_tree().paused = true
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("spike"):
 		die()

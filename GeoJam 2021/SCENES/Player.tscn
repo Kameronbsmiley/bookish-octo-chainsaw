@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
 [ext_resource path="res://ASSETS/Circle.png" type="Texture" id=3]
 [ext_resource path="res://ASSETS/Triangle.png" type="Texture" id=4]
 [ext_resource path="res://SCRIPTS/AnimationPlayer.gd" type="Script" id=5]
+[ext_resource path="res://ASSETS/Bungee-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://SCRIPTS/CanvasLayer.gd" type="Script" id=7]
 
 [sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.45 ), 0.0, 0.0, 0, 0 ]
@@ -74,8 +76,43 @@ tracks/3/keys = {
 "values": [ Vector2( 4, 37.5 ), Vector2( 36, 37.5 ), Vector2( 36, 37.5 ), Vector2( 4, 37.5 ) ]
 }
 
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 6 )
+
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 8.1, 8 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "Death"
+length = 0.75
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -32 ), Vector2( 0, 16 ), Vector2( 0, -8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -45.0, -135.0, 0.0 ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 2
@@ -156,6 +193,7 @@ shape = SubResource( 1 )
 [node name="Timer" type="Timer" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 anims/Death = SubResource( 7 )
@@ -175,10 +213,97 @@ scale = Vector2( 4, 38 )
 texture = ExtResource( 2 )
 offset = Vector2( 141.714, -11.1579 )
 
+[node name="CirclePopup" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer/CirclePopup"]
+margin_left = 320.0
+margin_top = 192.0
+margin_right = 755.0
+margin_bottom = 269.0
+custom_fonts/font = SubResource( 9 )
+text = "You unlocked the Bouncy Circle!
+
+Pro: Bounces higher than all other shapes!
+Con: Cannot move horizontally while in use!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CanvasLayer/CirclePopup"]
+margin_left = 424.0
+margin_top = 424.0
+margin_right = 597.0
+margin_bottom = 447.0
+custom_fonts/font = SubResource( 10 )
+text = "Sweet! Continue!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TrianglePopup" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer/TrianglePopup"]
+margin_left = 320.0
+margin_top = 192.0
+margin_right = 755.0
+margin_bottom = 269.0
+custom_fonts/font = SubResource( 9 )
+text = "You unlocked the Dashing Triangle!
+
+Pro: Can dash long distances and freezes in the air!
+Con: Can only move with dashing left or right!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CanvasLayer/TrianglePopup"]
+margin_left = 424.0
+margin_top = 424.0
+margin_right = 597.0
+margin_bottom = 447.0
+custom_fonts/font = SubResource( 10 )
+text = "Sweet! Continue!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CubePopup" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer/CubePopup"]
+margin_left = 296.0
+margin_top = 192.0
+margin_right = 813.0
+margin_bottom = 269.0
+custom_fonts/font = SubResource( 9 )
+text = "You unlocked the Big Cube!
+
+Pro: Weighs so much you can crush obstacles!
+Con: Weighs so much you cannot move at besides down!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CanvasLayer/CubePopup"]
+margin_left = 424.0
+margin_top = 424.0
+margin_right = 597.0
+margin_bottom = 447.0
+custom_fonts/font = SubResource( 10 )
+text = "Sweet! Continue!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0, -8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 6 )
+
+[node name="PlayerAnimation" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 8 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
