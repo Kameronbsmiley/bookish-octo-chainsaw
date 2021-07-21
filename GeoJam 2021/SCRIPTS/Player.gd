@@ -44,6 +44,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("switch_1"):
 		die()
 
+		$PlayerAnimation.play("switch")
 	match current_shape:
 
 		basic_cube:
@@ -169,18 +170,20 @@ func switch_shape():
 	if time_stop == true:
 		return
 
-	
-	
+
 	var switched = false
-	
+
+		
 	if Input.is_action_just_pressed("switch_previous") and can_switch:
 		current_shape -= 1
 		switched = true
-			
+		$PlayerAnimation.play("Switch")
 
 	if Input.is_action_just_pressed("switch_next") and can_switch:
 		current_shape += 1
 		switched = true
+		$PlayerAnimation.play("Switch")
+
 	if !switched:
 		return
 
@@ -189,7 +192,8 @@ func switch_shape():
 #	if current_shape == bouncy_circle:
 #		velocity.y = -400
 
-
+	
+		
 	if current_shape == 3:
 		velocity = Vector2.ZERO
 

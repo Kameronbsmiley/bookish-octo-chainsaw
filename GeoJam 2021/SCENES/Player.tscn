@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
@@ -112,6 +112,22 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, -45.0, -135.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Switch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -305,5 +321,6 @@ shape = SubResource( 6 )
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 8 )
+anims/Switch = SubResource( 11 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
