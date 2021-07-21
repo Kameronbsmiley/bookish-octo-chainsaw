@@ -183,22 +183,15 @@ text = "_"
 align = 1
 
 [node name="Q" type="Label" parent="CenterContainer/VBoxContainer/shape_select"]
-margin_right = 29.0
+margin_right = 39.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 4 )
 text = "Q"
 align = 1
 
-[node name="shape" type="TextureRect" parent="CenterContainer/VBoxContainer/shape_select"]
-margin_left = 33.0
-margin_right = 49.0
-margin_bottom = 21.0
-texture = ExtResource( 5 )
-stretch_mode = 4
-
 [node name="E" type="Label" parent="CenterContainer/VBoxContainer/shape_select"]
-margin_left = 53.0
+margin_left = 43.0
 margin_right = 83.0
 margin_bottom = 21.0
 size_flags_horizontal = 3

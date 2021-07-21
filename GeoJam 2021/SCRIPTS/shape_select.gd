@@ -15,8 +15,6 @@ var shapes = [{"shape": basic_cube_sprite, "color": Color.brown},
 {"shape": basic_cube_sprite, "color": Color.saddlebrown}]
 
 func _ready():
-	$shape_select/shape.texture = shapes[current_shape].shape
-	$shape_select/shape.modulate = shapes[current_shape].color
 	$MarginContainer/shape_select/.get_child(current_shape).modulate = shapes[current_shape].color
 	
 func _process(delta):
@@ -24,15 +22,11 @@ func _process(delta):
 		$MarginContainer/shape_select/.get_child(current_shape).modulate = Color.white
 		current_shape += 1
 		current_shape = clamp(current_shape, 0, len(shapes) - 1)
-		$shape_select/shape.texture = shapes[current_shape].shape
-		$shape_select/shape.modulate = shapes[current_shape].color
 		$MarginContainer/shape_select/.get_child(current_shape).modulate = shapes[current_shape].color
 	if Input.is_action_just_pressed("switch_previous"):
 		$MarginContainer/shape_select/.get_child(current_shape).modulate = Color.white
 		current_shape -= 1
 		current_shape = clamp(current_shape, 0, len(shapes) - 1)
-		$shape_select/shape.texture = shapes[current_shape].shape
-		$shape_select/shape.modulate = shapes[current_shape].color
 		$MarginContainer/shape_select/.get_child(current_shape).modulate = shapes[current_shape].color
 	if current_shape == 0:
 		$shape_select/Q.hide()
