@@ -204,8 +204,9 @@ func add_shape(_arg):
 	current_shape_list += 1
 
 func die():
-	dead = true
 	can_switch = false
+	dead = true
+	
 	$PlayerAnimation.play("Death")
 	$CanvasLayer/AnimationPlayer.play("Death")
 	yield(get_tree().create_timer(0.75), "timeout")

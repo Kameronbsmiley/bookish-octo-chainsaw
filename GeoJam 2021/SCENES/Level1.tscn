@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://SCENES/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SCENES/Exit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SCENES/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://SCENES/Test.tscn" type="PackedScene" id=4]
 
 [node name="Level1" type="Node2D"]
 
@@ -12,7 +11,6 @@ tile_data = PoolIntArray( -983054, 0, 0, -983053, 0, 0, -983052, 0, 0, -983051, 
 
 [node name="Exit" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, -8 )
-level_to_switch = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 56, -112 )
