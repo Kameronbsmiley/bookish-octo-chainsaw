@@ -29,7 +29,7 @@ enum {
 	big_cube
 }
 
-var current_shape_list = 0
+var current_shape_list = 4
 
 var current_shape = basic_cube
 
@@ -53,7 +53,7 @@ func _physics_process(delta):
 			$Sprite.texture = basic_cube_sprite
 			$Sprite.self_modulate = Color.brown
 			scale = Vector2(1,1)
-			movement(10,200,200, delta)
+			movement(10,150,200, delta)
 			
 			previous_shape.visible = false
 			if current_shape_list > 0:
@@ -140,11 +140,10 @@ func _physics_process(delta):
 				$CPUParticles2D.emitting = true
 				can_switch = false
 				Input.action_release("jump")
-				yield(get_tree().create_timer(0.5),"timeout")
+			yield(get_tree().create_timer(0.5),"timeout")
 
-				current_shape = basic_cube
-				
-				can_switch = true
+			current_shape = basic_cube
+			can_switch = true
 			
 
 
