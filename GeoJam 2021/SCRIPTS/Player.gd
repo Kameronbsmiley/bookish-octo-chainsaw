@@ -205,12 +205,15 @@ func add_shape(_arg):
 
 func die():
 	dead = true
+	can_switch = false
 	$PlayerAnimation.play("Death")
 	$CanvasLayer/AnimationPlayer.play("Death")
 	yield(get_tree().create_timer(0.75), "timeout")
 	if checkpoint != null:
 		respawn(checkpoint.global_position)
 	dead = false
+	current_shape = basic_cube
+	can_switch = true
 	
 func respawn(checkpoint_pos):
 	self.position = checkpoint_pos
@@ -227,6 +230,7 @@ func shape_popup(shape_to_show):
 		3:
 			$CanvasLayer/CubePopup.visible = true
 			get_tree().paused = true
+
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("spike"):
 		die()
