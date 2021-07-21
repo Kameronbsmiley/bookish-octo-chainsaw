@@ -1,11 +1,12 @@
 extends KinematicBody2D
 
 
+
 var velocity = Vector2.ZERO
 export var acceleration = 5
 export var friction = 5
 export var gravity = 20
-
+var dead = false
 #export var speed = 300
 #export var jumpforce = 300
 export var basic_cube_sprite = preload("res://ASSETS/box.png")
@@ -17,6 +18,7 @@ onready var previous_shape = $previous_shape
 
 onready var tilemap = "../TileMap"
 
+var checkpoint: Checkpoint
 var time_stop: bool = false
 var can_switch: bool = true
 
@@ -36,10 +38,14 @@ func _ready():
 	next_shape.visible = false
 	previous_shape.visible = false
 
+
 func _physics_process(delta):
 	switch_shape()
+	if Input.is_action_just_pressed("switch_1"):
+		die()
+
 	match current_shape:
-		
+
 		basic_cube:
 			$Camera2D.offset_v = -0.3
 			$Sprite.rotation_degrees = 0
@@ -97,7 +103,7 @@ func _physics_process(delta):
 			
 			velocity.y = 0
 			if Input.is_action_pressed("click"):
-				$Sprite.scale = Vector2(2,0.5)
+				$Sprite.scale = Vector2(1.5,0.5)
 				if global_position.x > get_global_mouse_position().x:
 					$Sprite.rotation_degrees = 270
 				else:
@@ -143,24 +149,26 @@ func _physics_process(delta):
 
 
 func movement(gravity, speed, jumpforce, delta): # Will take variables based on current switch state
-	var hdir = Input.get_action_strength("right") - Input.get_action_strength("left") # Get movement direction (horizontal direction)
-	
-	velocity.x = hdir * speed
-	velocity.y +=gravity
-	velocity.y = clamp(velocity.y, -800, 800)
-
-
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
-		velocity.y = -jumpforce
-	if is_on_floor() and velocity.x != 0:
-		$Dust.emitting = true
+	if !dead:
+		var hdir = Input.get_action_strength("right") - Input.get_action_strength("left") # Get movement direction (horizontal direction)
 		
-	velocity = move_and_slide(velocity, Vector2.UP)
+		velocity.x = hdir * speed
+		velocity.y += gravity
+		velocity.y = clamp(velocity.y, -800, 800)
+		
+		
+		if is_on_floor() and Input.is_action_just_pressed("jump"):
+			velocity.y = -jumpforce
+			
+		if is_on_floor() and velocity.x != 0:
+			$Dust.emitting = true
+			
+		velocity = move_and_slide(velocity, Vector2.UP)
 
 func switch_shape():
 	if time_stop == true:
 		return
-	print(current_shape)
+
 	
 	
 	var switched = false
@@ -181,16 +189,31 @@ func switch_shape():
 #	if current_shape == bouncy_circle:
 #		velocity.y = -400
 
-	
+
 	if current_shape == 3:
 		velocity = Vector2.ZERO
 
 	current_shape = clamp(current_shape, 0, current_shape_list)
-	
+
 
 func add_shape(_arg):
 	current_shape_list += 1
 
+func die():
+	dead = true
+	$CanvasLayer/AnimationPlayer.play("Death")
+	yield(get_tree().create_timer(0.75), "timeout")
+	if checkpoint != null:
+		respawn(checkpoint.global_position)
+	dead = false
+	
+func respawn(checkpoint_pos):
+	self.position = checkpoint_pos
 
 
 
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("spike"):
+		die()

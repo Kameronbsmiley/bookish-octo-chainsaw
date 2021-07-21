@@ -8,11 +8,25 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Checkpoint",
+"language": "GDScript",
+"path": "res://SCRIPTS/Checkpoint.gd"
+} ]
+_global_script_class_icons={
+"Checkpoint": ""
+}
+
 [application]
 
 config/name="GeoJam 2021"
 run/main_scene="res://SCENES/MainMenu.tscn"
 config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 
