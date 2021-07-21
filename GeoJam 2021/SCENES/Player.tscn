@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
@@ -7,24 +7,25 @@
 [ext_resource path="res://SCRIPTS/AnimationPlayer.gd" type="Script" id=5]
 [ext_resource path="res://ASSETS/Bungee-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://SCRIPTS/CanvasLayer.gd" type="Script" id=7]
+[ext_resource path="res://SCRIPTS/Popup.gd" type="Script" id=8]
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.45 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 0.44043, 0.44043, 0.44043, 1, 0.233398, 0.231575, 0.231575, 1 )
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=3]
 max_value = 2.0
 _data = [ Vector2( 0, 1.96136 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.15478, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 0.246094, 0.13266, 0, 1, 0.130371, 0.0554897, 0.0122223, 1 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 8, 7.95 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "Death"
 length = 1.5
 tracks/0/type = "value"
@@ -76,17 +77,16 @@ tracks/3/keys = {
 "values": [ Vector2( 4, 37.5 ), Vector2( 36, 37.5 ), Vector2( 36, 37.5 ), Vector2( 4, 37.5 ) ]
 }
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 6 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 8.1, 8 )
 
-[sub_resource type="Animation" id=8]
-resource_name = "Death"
+[sub_resource type="Animation" id=10]
 length = 0.75
 step = 0.05
 tracks/0/type = "value"
@@ -169,8 +169,8 @@ linear_accel = 5.0
 damping = 5.0
 angle_random = 1.0
 scale_amount = 0.4
-scale_amount_curve = SubResource( 4 )
-color_ramp = SubResource( 5 )
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2( 0, -0.283073 )
@@ -189,8 +189,8 @@ initial_velocity_random = 0.5
 linear_accel = 50.0
 angle = 45.0
 angle_random = 1.0
-scale_amount_curve = SubResource( 2 )
-color_ramp = SubResource( 3 )
+scale_amount_curve = SubResource( 3 )
+color_ramp = SubResource( 4 )
 
 [node name="next_shape" type="Sprite" parent="."]
 position = Vector2( 16, -8 )
@@ -204,7 +204,7 @@ texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -8 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -212,7 +212,7 @@ shape = SubResource( 1 )
 script = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
-anims/Death = SubResource( 7 )
+anims/Death = SubResource( 6 )
 script = ExtResource( 5 )
 
 [node name="box" type="Sprite" parent="CanvasLayer/AnimationPlayer"]
@@ -231,13 +231,14 @@ offset = Vector2( 141.714, -11.1579 )
 
 [node name="CirclePopup" type="Node2D" parent="CanvasLayer"]
 visible = false
+script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="CanvasLayer/CirclePopup"]
 margin_left = 320.0
 margin_top = 192.0
 margin_right = 755.0
 margin_bottom = 269.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 7 )
 text = "You unlocked the Bouncy Circle!
 
 Pro: Bounces higher than all other shapes!
@@ -251,7 +252,7 @@ margin_left = 424.0
 margin_top = 424.0
 margin_right = 597.0
 margin_bottom = 447.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 8 )
 text = "Sweet! Continue!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -259,13 +260,14 @@ __meta__ = {
 
 [node name="TrianglePopup" type="Node2D" parent="CanvasLayer"]
 visible = false
+script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="CanvasLayer/TrianglePopup"]
 margin_left = 320.0
 margin_top = 192.0
 margin_right = 755.0
 margin_bottom = 269.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 7 )
 text = "You unlocked the Dashing Triangle!
 
 Pro: Can dash long distances and freezes in the air!
@@ -279,7 +281,7 @@ margin_left = 424.0
 margin_top = 424.0
 margin_right = 597.0
 margin_bottom = 447.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 8 )
 text = "Sweet! Continue!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -287,13 +289,14 @@ __meta__ = {
 
 [node name="CubePopup" type="Node2D" parent="CanvasLayer"]
 visible = false
+script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="CanvasLayer/CubePopup"]
 margin_left = 296.0
 margin_top = 192.0
 margin_right = 813.0
 margin_bottom = 269.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 7 )
 text = "You unlocked the Big Cube!
 
 Pro: Weighs so much you can crush obstacles!
@@ -307,7 +310,7 @@ margin_left = 424.0
 margin_top = 424.0
 margin_right = 597.0
 margin_bottom = 447.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 8 )
 text = "Sweet! Continue!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -317,10 +320,10 @@ __meta__ = {
 position = Vector2( 0, -8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 6 )
+shape = SubResource( 9 )
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="."]
-anims/Death = SubResource( 8 )
+anims/Death = SubResource( 10 )
 anims/Switch = SubResource( 11 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

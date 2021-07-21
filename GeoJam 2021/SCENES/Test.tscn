@@ -43,5 +43,5 @@ position = Vector2( 41.2725, -88.8944 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 
-[connection signal="body_entered" from="Switch" to="TileMap" method="_on_Switch_body_entered"]
 [connection signal="body_entered" from="Switch" to="Switch" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Switch" to="TileMap" method="_on_Switch_body_entered"]
