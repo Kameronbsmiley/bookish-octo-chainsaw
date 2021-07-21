@@ -9,13 +9,13 @@
 [ext_resource path="res://SCRIPTS/CanvasLayer.gd" type="Script" id=7]
 [ext_resource path="res://SCRIPTS/Popup.gd" type="Script" id=8]
 
-[sub_resource type="Curve" id=1]
+[sub_resource type="Curve" id=12]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.45 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=13]
 colors = PoolColorArray( 0.44043, 0.44043, 0.44043, 1, 0.233398, 0.231575, 0.231575, 1 )
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=14]
 max_value = 2.0
 _data = [ Vector2( 0, 1.96136 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.15478, 0.0, 0, 0 ]
 
@@ -25,7 +25,7 @@ colors = PoolColorArray( 0.246094, 0.13266, 0, 1, 0.130371, 0.0554897, 0.0122223
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 8, 7.95 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=15]
 resource_name = "Death"
 length = 1.5
 tracks/0/type = "value"
@@ -80,7 +80,7 @@ tracks/3/keys = {
 [sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=16]
 font_data = ExtResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=9]
@@ -169,8 +169,8 @@ linear_accel = 5.0
 damping = 5.0
 angle_random = 1.0
 scale_amount = 0.4
-scale_amount_curve = SubResource( 1 )
-color_ramp = SubResource( 2 )
+scale_amount_curve = SubResource( 12 )
+color_ramp = SubResource( 13 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2( 0, -0.283073 )
@@ -189,7 +189,7 @@ initial_velocity_random = 0.5
 linear_accel = 50.0
 angle = 45.0
 angle_random = 1.0
-scale_amount_curve = SubResource( 3 )
+scale_amount_curve = SubResource( 14 )
 color_ramp = SubResource( 4 )
 
 [node name="next_shape" type="Sprite" parent="."]
@@ -212,7 +212,7 @@ shape = SubResource( 5 )
 script = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
-anims/Death = SubResource( 6 )
+anims/Death = SubResource( 15 )
 script = ExtResource( 5 )
 
 [node name="box" type="Sprite" parent="CanvasLayer/AnimationPlayer"]
@@ -252,7 +252,7 @@ margin_left = 424.0
 margin_top = 424.0
 margin_right = 597.0
 margin_bottom = 447.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 16 )
 text = "Sweet! Continue!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -281,7 +281,7 @@ margin_left = 424.0
 margin_top = 424.0
 margin_right = 597.0
 margin_bottom = 447.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 16 )
 text = "Sweet! Continue!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -310,7 +310,7 @@ margin_left = 424.0
 margin_top = 424.0
 margin_right = 597.0
 margin_bottom = 447.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 16 )
 text = "Sweet! Continue!"
 __meta__ = {
 "_edit_use_anchors_": false

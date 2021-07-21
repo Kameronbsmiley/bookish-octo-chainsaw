@@ -202,6 +202,7 @@ func switch_shape():
 
 func add_shape(_arg):
 	current_shape_list += 1
+	shape_popup(current_shape_list)
 
 func die():
 	can_switch = false

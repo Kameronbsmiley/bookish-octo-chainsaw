@@ -10,4 +10,3 @@ func _process(delta):
 
 func collected(body):
 	queue_free()
-	body.shape_popup(body.current_shape_list)
