@@ -8,6 +8,10 @@ func break_blocks(tile_position: Vector2):
 		break_blocks(tile_position)
 		tile_position.x -= 2
 		break_blocks(tile_position)
+		tile_position.y += 1
+		break_blocks(tile_position)
+		tile_position.y -= 2
+		break_blocks(tile_position)
 
 
 
