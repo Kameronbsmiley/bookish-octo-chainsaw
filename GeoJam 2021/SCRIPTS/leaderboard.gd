@@ -10,6 +10,7 @@ func _ready():
 	if show_popup:
 		$GameOverPopUp.popup()
 		$GameOverPopUp/VBoxContainer/player_time.text = str(time)
+		$GameOverPopUp.get_close_button().hide()
 	render_screen()
 
 func render_screen():
@@ -28,6 +29,7 @@ func _on_ok_pressed():
 	var player_name = $GameOverPopUp/VBoxContainer/input.text
 	print(player_name)
 	$"/root/networking".rpc("submit_score", player_name, time, 1)
+	$GameOverPopUp.hide()
 	render_screen()				
 
 func _on_menu_pressed():
