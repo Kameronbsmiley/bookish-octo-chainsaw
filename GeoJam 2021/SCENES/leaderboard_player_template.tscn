@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://SCRIPTS/Player_leaderboard_template.gd" type="Script" id=1]
+
+[node name="description" type="HBoxContainer"]
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 32.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="."]
+margin_right = 510.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Name"
+align = 1
+
+[node name="Time" type="Label" parent="."]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Time"
+align = 1

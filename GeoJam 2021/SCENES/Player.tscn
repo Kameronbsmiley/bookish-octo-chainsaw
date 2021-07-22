@@ -83,7 +83,7 @@ font_data = ExtResource( 6 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 8.1, 8 )
+extents = Vector2( 8.1, 8.1 )
 
 [sub_resource type="Animation" id=10]
 length = 0.75
