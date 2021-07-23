@@ -44,10 +44,10 @@ func _physics_process(delta):
 #	if Input.is_action_just_pressed("switch_1"):
 #		die()
 
-		$PlayerAnimation.play("switch")
 	match current_shape:
 
 		basic_cube:
+			can_switch = true
 			$Camera2D.offset_v = -0.3
 			$Sprite.rotation_degrees = 0
 			$Sprite.texture = basic_cube_sprite
@@ -166,8 +166,8 @@ func movement(gravity, speed, jumpforce, delta): # Will take variables based on 
 		velocity = move_and_slide(velocity, Vector2.UP)
 
 func switch_shape():
-	if time_stop == true:
-		return
+#	if time_stop == true:
+#		return
 
 
 	var switched = false
@@ -206,7 +206,7 @@ func add_shape(_arg):
 func die():
 	can_switch = false
 	dead = true
-	
+	$CanvasLayer.death_count += 1
 	$PlayerAnimation.play("Death")
 	$CanvasLayer/AnimationPlayer.play("Death")
 	yield(get_tree().create_timer(0.75), "timeout")

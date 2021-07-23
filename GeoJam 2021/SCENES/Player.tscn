@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
@@ -82,10 +82,21 @@ font_data = ExtResource( 6 )
 [sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 6 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=10]
+size = 28
+font_data = ExtResource( 6 )
+
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 8.1, 8.1 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=12]
 length = 0.75
 step = 0.05
 tracks/0/type = "value"
@@ -113,8 +124,7 @@ tracks/1/keys = {
 "values": [ 0.0, -45.0, -135.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "Switch"
+[sub_resource type="Animation" id=13]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
@@ -314,14 +324,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DeathCounter" type="Node2D" parent="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DeathCounter"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 208.0
+margin_bottom = 80.0
+custom_styles/panel = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/DeathCounter"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 10 )
+text = "Deaths"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0, -8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 9 )
+shape = SubResource( 11 )
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="."]
-anims/Death = SubResource( 10 )
-anims/Switch = SubResource( 11 )
+anims/Death = SubResource( 12 )
+anims/Switch = SubResource( 13 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
