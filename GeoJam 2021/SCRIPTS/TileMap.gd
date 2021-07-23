@@ -22,12 +22,12 @@ func break_blocks(tile_position: Vector2):
 
 func _block_first():
 	for cell in FirstBlocks:
-		set_cellv(cell, 0)
+		set_cellv(cell, 3)
 
 
 func _block_second():
 	for cell in SecondBlocks:
-		set_cellv(cell, 0)
+		set_cellv(cell, 3)
 
 
 
