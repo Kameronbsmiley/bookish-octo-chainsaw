@@ -30,12 +30,12 @@ enum {
 }
 signal died
 
-var current_shape_list = 0
+var current_shape_list = 3
 
 var current_shape = basic_cube
 
 func _ready():
-	$Sprite.self_modulate = Color.brown
+	$Sprite.self_modulate = Color8(171, 13, 31)
 	next_shape.visible = false
 	previous_shape.visible = false
 	$Camera2D.pause_mode = Node.PAUSE_MODE_PROCESS
@@ -51,7 +51,7 @@ func _physics_process(delta):
 			$Camera2D.offset_v = -0.3
 			$Sprite.rotation_degrees = 0
 			$Sprite.texture = basic_cube_sprite
-			$Sprite.self_modulate = Color.brown
+			$Sprite.self_modulate = Color8(171, 13, 31)
 			scale = Vector2(1,1)
 			movement(10,150,200, delta)
 			
@@ -60,7 +60,7 @@ func _physics_process(delta):
 				if !is_on_floor():
 					can_switch = true
 					next_shape.visible = true
-					next_shape.self_modulate = Color.blue
+					next_shape.self_modulate = Color8(0, 118, 122)
 					next_shape.texture = bouncy_circle_sprite
 				else: 
 					next_shape.visible = false
@@ -70,17 +70,17 @@ func _physics_process(delta):
 		bouncy_circle:
 			$Camera2D.offset_v = 0
 			$Sprite.texture = bouncy_circle_sprite
-			$Sprite.self_modulate = Color.blue
+			$Sprite.self_modulate = Color8(0, 118, 122)
 			scale = Vector2(1,1)
 			Input.action_press("jump")
 			movement(10,0,400, delta)
 			
 			previous_shape.visible = true
-			previous_shape.self_modulate = Color.brown
+			previous_shape.self_modulate = Color8(171, 13, 31)
 			previous_shape.texture = basic_cube_sprite
 			if current_shape_list > 1:
 				next_shape.visible = true
-				next_shape.self_modulate = Color.darkgoldenrod
+				next_shape.self_modulate = Color8(215, 133, 33)
 				next_shape.texture = dash_triangle_sprite
 			else: next_shape.visible = false
 
@@ -88,17 +88,17 @@ func _physics_process(delta):
 			$Camera2D.offset_v = 0
 			$Sprite.rotation_degrees = 0
 			$Sprite.texture = dash_triangle_sprite
-			$Sprite.self_modulate = Color.darkgoldenrod
+			$Sprite.self_modulate = Color8(215, 133, 33)
 			scale = Vector2(1,1)
 			Input.action_release("jump")
 			
 			previous_shape.visible = true
-			previous_shape.self_modulate = Color.blue
+			previous_shape.self_modulate = Color8(0, 118, 122)
 			previous_shape.texture = bouncy_circle_sprite
 			
 			if current_shape_list > 2:
 				next_shape.visible = true
-				next_shape.self_modulate = Color.saddlebrown
+				next_shape.self_modulate = Color8(30, 66, 16)
 				next_shape.texture = basic_cube_sprite
 			else: next_shape.visible = false
 			
@@ -122,7 +122,7 @@ func _physics_process(delta):
 			$Camera2D.offset_v = -0.3
 			$Sprite.rotation_degrees = 0
 			$Sprite.texture = basic_cube_sprite
-			$Sprite.self_modulate = Color.saddlebrown
+			$Sprite.self_modulate = Color8(30, 66, 16)
 			scale = Vector2(2,2)
 			velocity += Vector2.DOWN * delta * 200
 			previous_shape.visible = false

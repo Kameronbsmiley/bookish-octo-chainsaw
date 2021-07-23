@@ -82,10 +82,10 @@ font_data = ExtResource( 6 )
 [sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 6 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 8.1, 8.1 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=10]
 length = 0.75
 step = 0.05
 tracks/0/type = "value"
@@ -113,7 +113,7 @@ tracks/1/keys = {
 "values": [ 0.0, -45.0, -135.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=11]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
@@ -146,7 +146,7 @@ texture = ExtResource( 2 )
 [node name="Dust" type="CPUParticles2D" parent="."]
 modulate = Color( 0.807843, 0.188235, 0.188235, 1 )
 show_behind_parent = true
-position = Vector2( 0, -2.31247 )
+position = Vector2( 0, -8 )
 z_index = 1
 z_as_relative = false
 emitting = false
@@ -318,10 +318,10 @@ position = Vector2( 0, -8 )
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 11 )
+shape = SubResource( 9 )
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="."]
-anims/Death = SubResource( 12 )
-anims/Switch = SubResource( 13 )
+anims/Death = SubResource( 10 )
+anims/Switch = SubResource( 11 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

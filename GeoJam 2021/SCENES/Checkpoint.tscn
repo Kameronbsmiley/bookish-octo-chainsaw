@@ -5,7 +5,7 @@
 [ext_resource path="res://SCRIPTS/Checkpoint.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4.64529, 14.4845 )
+extents = Vector2( 4.64529, 16.1076 )
 
 [node name="Checkpoint" type="Area2D"]
 script = ExtResource( 3 )

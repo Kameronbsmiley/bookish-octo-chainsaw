@@ -35,7 +35,7 @@ func init_connection(is_server: bool):
 		if "local" in OS.get_cmdline_args():
 			print("Using localhost")
 			SERVER_IP = LOCAL_HOST
-		var url = "ws://" + (SERVER_IP) + ":" + str(SERVER_PORT)
+		var url = "wss://" + (SERVER_IP) + ":" + str(SERVER_PORT)
 		var error = peer.connect_to_url(url, PoolStringArray(), true);
 		if error != OK:
 			print("Error connecting: ", error)
