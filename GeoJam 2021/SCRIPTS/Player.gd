@@ -41,8 +41,7 @@ func _ready():
 
 func _physics_process(delta):
 	switch_shape()
-#	if Input.is_action_just_pressed("switch_1"):
-#		die()
+
 
 	match current_shape:
 
