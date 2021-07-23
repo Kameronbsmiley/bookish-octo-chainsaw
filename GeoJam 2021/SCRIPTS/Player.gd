@@ -29,7 +29,7 @@ enum {
 	big_cube
 }
 
-var current_shape_list = 4
+var current_shape_list = 0
 
 var current_shape = basic_cube
 
@@ -41,8 +41,8 @@ func _ready():
 
 func _physics_process(delta):
 	switch_shape()
-	if Input.is_action_just_pressed("switch_1"):
-		die()
+#	if Input.is_action_just_pressed("switch_1"):
+#		die()
 
 		$PlayerAnimation.play("switch")
 	match current_shape:
