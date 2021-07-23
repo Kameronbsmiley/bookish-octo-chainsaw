@@ -23,22 +23,23 @@ func break_blocks(tile_position: Vector2):
 func _block_first():
 	for cell in FirstBlocks:
 		set_cellv(cell, 0)
-	print("blocking first")
+
 
 func _block_second():
 	for cell in SecondBlocks:
 		set_cellv(cell, 0)
-	print("blocking second")
+
 
 
 func _on_Switch_body_entered(body):
 	for cell in get_used_cells_by_id(2):
 		set_cellv(cell, -1)
 
-#
+
 func _on_FirstBlock_body_entered(body):
 	_block_first()
 
 
 func _on_SecondBlock_body_entered(body):
 	_block_second()
+
