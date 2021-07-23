@@ -23,3 +23,8 @@ func leaderboard(_ignore):
 func _process(delta):
 	time += delta
 	$CanvasLayer/time.text = str(time)
+
+
+func _on_Area2D_body_entered(body):
+	leaderboard(body)
+	pass # Replace with function body.

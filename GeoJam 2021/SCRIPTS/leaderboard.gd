@@ -27,7 +27,7 @@ func render_screen():
 
 func _on_ok_pressed():
 	var player_name = $GameOverPopUp/VBoxContainer/input.text
-	print(player_name)
+	print("Submiting score", player_name, time) #Add deaths
 	$"/root/networking".rpc("submit_score", player_name, time, 1)
 	$GameOverPopUp.hide()
 	render_screen()				
