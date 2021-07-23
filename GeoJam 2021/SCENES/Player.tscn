@@ -1,12 +1,17 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
 [ext_resource path="res://ASSETS/Circle.png" type="Texture" id=3]
 [ext_resource path="res://ASSETS/Triangle.png" type="Texture" id=4]
+[ext_resource path="res://ASSETS/jump.wav" type="AudioStream" id=5]
 [ext_resource path="res://ASSETS/Bungee-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://SCRIPTS/CanvasLayer.gd" type="Script" id=7]
 [ext_resource path="res://SCRIPTS/Popup.gd" type="Script" id=8]
+[ext_resource path="res://ASSETS/switch.wav" type="AudioStream" id=9]
+[ext_resource path="res://ASSETS/breakblock.wav" type="AudioStream" id=10]
+[ext_resource path="res://ASSETS/Death.wav" type="AudioStream" id=11]
+[ext_resource path="res://ASSETS/dash.wav" type="AudioStream" id=12]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.45 ), 0.0, 0.0, 0, 0 ]
@@ -75,6 +80,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 4, 37.5 ), Vector2( 36, 37.5 ), Vector2( 36, 37.5 ), Vector2( 4, 37.5 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimationPlayer/box:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AnimationPlayer/box2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 6 )
@@ -84,6 +113,64 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 8.1, 8.1 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "CubeJump"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 0.7 ), Vector2( 0.7, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "CubeWalk"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.8 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -6.25 ), Vector2( 0, -8 ) ]
+}
 
 [sub_resource type="Animation" id=10]
 length = 0.75
@@ -126,6 +213,46 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -201,6 +328,7 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -8 )
 shape = SubResource( 5 )
 
@@ -213,6 +341,7 @@ script = ExtResource( 7 )
 anims/Death = SubResource( 6 )
 
 [node name="box" type="Sprite" parent="CanvasLayer/AnimationPlayer"]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 59.4285, 718.421 )
 scale = Vector2( 4, 37.5 )
@@ -220,6 +349,7 @@ texture = ExtResource( 2 )
 offset = Vector2( -22.8571, -11.1579 )
 
 [node name="box2" type="Sprite" parent="CanvasLayer/AnimationPlayer"]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 489.143, 728 )
 scale = Vector2( 4, 38 )
@@ -314,6 +444,7 @@ __meta__ = {
 }
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -8 )
 collision_mask = 17
 
@@ -321,7 +452,30 @@ collision_mask = 17
 shape = SubResource( 9 )
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="."]
+anims/CubeJump = SubResource( 13 )
+anims/CubeWalk = SubResource( 12 )
 anims/Death = SubResource( 10 )
 anims/Switch = SubResource( 11 )
+anims/idle = SubResource( 14 )
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+pitch_scale = 0.86
+
+[node name="SwitchSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+volume_db = -5.0
+pitch_scale = 0.85
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+
+[node name="BreakBlockSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="animation_finished" from="PlayerAnimation" to="." method="_on_PlayerAnimation_animation_finished"]
