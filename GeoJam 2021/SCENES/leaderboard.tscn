@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://SCRIPTS/leaderboard.gd" type="Script" id=1]
 [ext_resource path="res://SCENES/leaderboard_player_template.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ASSETS/geojam.png" type="Texture" id=3]
+[ext_resource path="res://ASSETS/Bungee-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 4 )
 
 [node name="leaderboard" type="CanvasLayer"]
 layer = -1
@@ -24,6 +32,7 @@ margin_top = 32.0
 margin_right = -49.0
 margin_bottom = 64.0
 size_flags_vertical = 7
+custom_fonts/font = SubResource( 2 )
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -48,7 +57,8 @@ margin_bottom = 449.0
 
 [node name="top_score" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 506.0
-margin_bottom = 14.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 1 )
 text = "Top Scores"
 align = 1
 __meta__ = {
@@ -56,12 +66,20 @@ __meta__ = {
 }
 
 [node name="description" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 25.0
 margin_right = 506.0
+margin_bottom = 42.0
 
-[node name="player_container" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 36.0
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 46.0
 margin_right = 506.0
-margin_bottom = 36.0
+margin_bottom = 449.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="player_container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 506.0
+size_flags_horizontal = 3
 
 [node name="GameOverPopUp" type="WindowDialog" parent="."]
 margin_left = 378.867
@@ -69,7 +87,7 @@ margin_top = 222.271
 margin_right = 683.867
 margin_bottom = 380.271
 popup_exclusive = true
-window_title = "GeoJam 2021"
+window_title = "GameOver"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -83,19 +101,19 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="GameOverPopUp/VBoxContainer"]
 margin_right = 305.0
-margin_bottom = 28.0
+margin_bottom = 22.0
 size_flags_vertical = 7
-text = "Game Over!"
+text = "Submit you time for Geojam 2021!"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player_time" type="Label" parent="GameOverPopUp/VBoxContainer"]
-margin_top = 32.0
+[node name="time" type="Label" parent="GameOverPopUp/VBoxContainer"]
+margin_top = 26.0
 margin_right = 305.0
-margin_bottom = 60.0
+margin_bottom = 49.0
 size_flags_vertical = 7
 text = "0"
 align = 1
@@ -104,10 +122,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="GameOverPopUp/VBoxContainer"]
-margin_top = 64.0
+[node name="deaths" type="Label" parent="GameOverPopUp/VBoxContainer"]
+margin_top = 53.0
 margin_right = 305.0
-margin_bottom = 93.0
+margin_bottom = 76.0
+size_flags_vertical = 7
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enter_name" type="Label" parent="GameOverPopUp/VBoxContainer"]
+margin_top = 80.0
+margin_right = 305.0
+margin_bottom = 103.0
 size_flags_vertical = 7
 text = "Enter your name:"
 align = 1
@@ -116,16 +146,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="input" type="TextEdit" parent="GameOverPopUp/VBoxContainer"]
-margin_top = 97.0
+[node name="input" type="LineEdit" parent="GameOverPopUp/VBoxContainer"]
+margin_top = 107.0
 margin_right = 305.0
-margin_bottom = 125.0
-size_flags_vertical = 7
-text = "john doe"
+margin_bottom = 131.0
+align = 1
+max_length = 15
+placeholder_text = "john doe"
 caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ok" type="Button" parent="GameOverPopUp/VBoxContainer"]
-margin_top = 129.0
+margin_top = 135.0
 margin_right = 305.0
 margin_bottom = 158.0
 size_flags_vertical = 7

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
@@ -80,17 +80,6 @@ tracks/3/keys = {
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=8]
-font_data = ExtResource( 6 )
-
-[sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="DynamicFont" id=10]
-size = 28
 font_data = ExtResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=11]
@@ -320,31 +309,6 @@ margin_right = 597.0
 margin_bottom = 447.0
 custom_fonts/font = SubResource( 8 )
 text = "Sweet! Continue!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DeathCounter" type="Node2D" parent="CanvasLayer"]
-
-[node name="Panel" type="Panel" parent="CanvasLayer/DeathCounter"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 208.0
-margin_bottom = 80.0
-custom_styles/panel = SubResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="CanvasLayer/DeathCounter"]
-margin_left = 24.0
-margin_top = 24.0
-margin_right = 200.0
-margin_bottom = 72.0
-custom_fonts/font = SubResource( 10 )
-text = "Deaths"
-align = 1
-valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

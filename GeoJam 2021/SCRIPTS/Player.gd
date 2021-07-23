@@ -28,6 +28,7 @@ enum {
 	dash_triangle,
 	big_cube
 }
+signal died
 
 var current_shape_list = 0
 
@@ -206,7 +207,7 @@ func add_shape(_arg):
 func die():
 	can_switch = false
 	dead = true
-	$CanvasLayer.death_count += 1
+	emit_signal("died")
 	$PlayerAnimation.play("Death")
 	$CanvasLayer/AnimationPlayer.play("Death")
 	yield(get_tree().create_timer(0.75), "timeout")
