@@ -428,6 +428,9 @@ custom_styles/disabled = SubResource( 6 )
 custom_styles/normal = SubResource( 12 )
 custom_fonts/font = SubResource( 2 )
 text = "Next"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Previous" type="Button" parent="."]
 margin_left = 128.0

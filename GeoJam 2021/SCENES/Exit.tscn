@@ -11,5 +11,5 @@ extents = Vector2( 7.96172, 7.91158 )
 shape = SubResource( 1 )
 
 [node name="Exit" type="Sprite" parent="."]
-modulate = Color( 0.462745, 0.00784314, 0.4, 1 )
+modulate = Color( 0.847059, 0.756863, 0, 1 )
 texture = ExtResource( 1 )
