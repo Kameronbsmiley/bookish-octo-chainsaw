@@ -12,8 +12,9 @@ func _on_Button_pressed():
 	$leaderboard.visible = false
 	yield(get_node("Control/AnimationPlayer"),"animation_finished")
 	if tut:
-		get_tree().change_scene("res://SCENES/TutorialScreen.tscn")
 		tut = false
+		get_tree().change_scene("res://SCENES/TutorialScreen.tscn")
+
 	else:
 		get_tree().change_scene("res://SCENES/World.tscn")
 

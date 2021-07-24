@@ -80,18 +80,75 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 4, 37.5 ), Vector2( 36, 37.5 ), Vector2( 36, 37.5 ), Vector2( 4, 37.5 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimationPlayer/box:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AnimationPlayer/box2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="DynamicFont" id=7]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 6 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 8.1, 8.1 )
 
 [sub_resource type="Animation" id=13]
-length = 0.2
+resource_name = "CubeJump"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 0.7 ), Vector2( 0.7, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "CubeWalk"
+length = 0.3
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
@@ -99,13 +156,25 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0, 0.15, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.8 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -6.25 ), Vector2( 0, -8 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=14]
 length = 0.75
 step = 0.05
 tracks/0/type = "value"
@@ -134,34 +203,6 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=15]
-length = 0.75
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -8 ), Vector2( 0, -32 ), Vector2( 0, 16 ), Vector2( 0, -8 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, -45.0, -135.0, 0.0 ]
-}
-
-[sub_resource type="Animation" id=16]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -200,10 +241,10 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=16]
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=17]
 font_data = ExtResource( 6 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -312,15 +353,20 @@ visible = false
 script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="CanvasLayer/CirclePopup"]
-margin_left = 320.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 186.508
 margin_top = 192.0
-margin_right = 755.0
-margin_bottom = 269.0
+margin_right = 841.508
+margin_bottom = 289.0
 custom_fonts/font = SubResource( 7 )
 text = "You unlocked the Bouncy Circle!
 
 Pro: Bounces higher than all other shapes!
-Con: Cannot move horizontally while in use!"
+Con: constantly bounces and can't move horizontally while in use!
+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -341,14 +387,14 @@ visible = false
 script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="CanvasLayer/TrianglePopup"]
-margin_left = 320.0
+margin_left = 297.26
 margin_top = 192.0
-margin_right = 755.0
+margin_right = 751.26
 margin_bottom = 269.0
 custom_fonts/font = SubResource( 7 )
 text = "You unlocked the Dashing Triangle!
 
-Pro: Can dash long distances and freezes in the air!
+Pro: Can dash long distances with left click!
 Con: Can only move with dashing left or right!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -366,13 +412,12 @@ __meta__ = {
 }
 
 [node name="CubePopup" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="CanvasLayer/CubePopup"]
-margin_left = 296.0
+margin_left = 265.762
 margin_top = 192.0
-margin_right = 813.0
+margin_right = 782.762
 margin_bottom = 269.0
 custom_fonts/font = SubResource( 7 )
 text = "You unlocked the Big Cube!
@@ -395,18 +440,17 @@ __meta__ = {
 }
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -8 )
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 14 )
+shape = SubResource( 18 )
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="."]
 anims/CubeJump = SubResource( 13 )
 anims/CubeWalk = SubResource( 12 )
-anims/Death = SubResource( 15 )
-anims/idle = SubResource( 16 )
+anims/Death = SubResource( 14 )
+anims/idle = SubResource( 15 )
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
@@ -451,7 +495,7 @@ margin_bottom = 50.0
 [node name="main menu" type="Button" parent="CanvasLayer2/escape_menu/VBoxContainer"]
 margin_right = 134.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 16 )
 text = "Main menu"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -461,7 +505,7 @@ __meta__ = {
 margin_top = 27.0
 margin_right = 134.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 17 )
 text = "continue"
 __meta__ = {
 "_edit_use_anchors_": false

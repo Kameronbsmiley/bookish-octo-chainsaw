@@ -18,10 +18,14 @@ Button/styles/Button = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=6]
@@ -37,6 +41,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1239, 82 ), Vector2( 1239, 772 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 152, 80 ), Vector2( 152, 224 ) ]
 }
 
 [sub_resource type="DynamicFont" id=7]
@@ -62,6 +78,9 @@ corner_radius_bottom_left = 10
 corner_detail = 10
 
 [sub_resource type="DynamicFont" id=5]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [node name="MainMenu" type="Control"]
@@ -281,6 +300,9 @@ margin_bottom = 167.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 text = "SHAPE SHIFTER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="leaderboard" type="Button" parent="."]
 margin_left = 904.0
