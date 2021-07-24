@@ -152,7 +152,7 @@ margin_right = 305.0
 margin_bottom = 131.0
 align = 1
 max_length = 15
-placeholder_text = "john doe"
+placeholder_text = "leeroy jenkins"
 caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false

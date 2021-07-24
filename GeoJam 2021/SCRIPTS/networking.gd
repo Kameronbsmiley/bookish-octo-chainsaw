@@ -3,7 +3,9 @@ extends Node
 
 var SERVER_PORT = 4242
 var LINODE = "li258-250.members.linode.com"  #Make Environtment var?
-var SERVER_IP = LINODE
+
+var SERVER_DOMAIN = LINODE
+
 var LOCAL_HOST = "127.0.0.1"
 var peer
 
@@ -27,6 +29,8 @@ func init_connection(is_server: bool):
 	if is_server:
 		print("Starting as server")
 		peer = WebSocketServer.new()  #NetworkedMultiplayerENet
+		peer.ssl_certificate = load("res://CERTBOT/fullchain.crt")
+		peer.private_key = load("res://CERTBOT/privkey.key")
 		peer.listen(SERVER_PORT, PoolStringArray(), true)
 #		peer.create_server(SERVER_PORT)
 	else:
@@ -34,9 +38,9 @@ func init_connection(is_server: bool):
 		peer = WebSocketClient.new()
 		if "local" in OS.get_cmdline_args():
 			print("Using localhost")
-			SERVER_IP = LOCAL_HOST
-		var url = "wss://" + (SERVER_IP) + ":" + str(SERVER_PORT)
-		var error = peer.connect_to_url(url, PoolStringArray(), true);
+			SERVER_DOMAIN = LOCAL_HOST
+		var url = "wss://" + (SERVER_DOMAIN) + ":" + str(SERVER_PORT)
+		var error = peer.connect_to_url(url, PoolStringArray(), true)
 		if error != OK:
 			print("Error connecting: ", error)
 #		peer.create_client(SERVER_IP,SERVER_PORT)
@@ -69,7 +73,7 @@ func update_top_scores():
 	if len(scores) > 100:
 		scores = scores.slice(0, 99) #Set max size to 200
 	top_scores = scores
-	print("b4", len(scores), "after", len(top_scores))
+
 
 func _process(delta):
 	peer.poll()
