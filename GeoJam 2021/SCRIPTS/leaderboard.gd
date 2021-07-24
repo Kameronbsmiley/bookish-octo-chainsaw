@@ -9,6 +9,7 @@ var deaths: int = 0
 
 func _ready():
 	if show_popup:
+		$FinishSound.play()
 		$GameOverPopUp.popup()
 		$GameOverPopUp/VBoxContainer/time.text = "time: " + str("%.1f" % time)
 		$GameOverPopUp/VBoxContainer/deaths.text = "deaths: " + str(deaths)

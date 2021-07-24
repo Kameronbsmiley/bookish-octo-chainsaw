@@ -211,6 +211,7 @@ func switch_shape():
 func add_shape(_arg):
 	current_shape_list += 1
 	shape_popup(current_shape_list)
+	$CollectSound.play()
 
 func die():
 	can_switch = false
@@ -250,6 +251,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("esc"):
 		var escape_menu = $CanvasLayer2/escape_menu
 		escape_menu.visible = !escape_menu.visible
+		get_tree().paused = !get_tree().paused
 
 
 func _on_PlayerAnimation_animation_finished(anim_name):

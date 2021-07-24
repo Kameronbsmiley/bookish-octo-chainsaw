@@ -54,4 +54,6 @@ hue_variation_random = 0.46
 position = Vector2( 0, -0.817581 )
 
 [node name="CheckpointSound" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
 stream = ExtResource( 4 )
+volume_db = -5.0

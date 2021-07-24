@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://ASSETS/breakblock.wav" type="AudioStream" id=10]
 [ext_resource path="res://ASSETS/Death.wav" type="AudioStream" id=11]
 [ext_resource path="res://ASSETS/dash.wav" type="AudioStream" id=12]
+[ext_resource path="res://ASSETS/collectshape.wav" type="AudioStream" id=13]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.45 ), 0.0, 0.0, 0, 0 ]
@@ -412,6 +413,7 @@ __meta__ = {
 }
 
 [node name="CubePopup" type="Node2D" parent="CanvasLayer"]
+visible = false
 script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="CanvasLayer/CubePopup"]
@@ -470,6 +472,10 @@ stream = ExtResource( 10 )
 
 [node name="DashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 12 )
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
+stream = ExtResource( 13 )
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 pause_mode = 2
