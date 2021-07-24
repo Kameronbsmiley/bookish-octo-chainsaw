@@ -29,6 +29,7 @@ enum {
 	big_cube
 }
 signal died
+signal mainmenu
 
 var current_shape_list = 0
 
@@ -245,9 +246,19 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("spike"):
 		die()
 
-
+func _process(delta):
+	if Input.is_action_just_pressed("esc"):
+		var escape_menu = $CanvasLayer2/escape_menu
+		escape_menu.visible = !escape_menu.visible
 
 
 func _on_PlayerAnimation_animation_finished(anim_name):
 	if anim_name != "idle":
 		$PlayerAnimation.play("idle")
+
+
+func _on_main_menu_pressed():
+	emit_signal("mainmenu")
+
+func _on_continue_pressed():
+	$CanvasLayer2/escape_menu.hide()
