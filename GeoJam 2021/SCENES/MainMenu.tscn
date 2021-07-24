@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ASSETS/Triangle.png" type="Texture" id=1]
 [ext_resource path="res://ASSETS/Circle.png" type="Texture" id=2]
@@ -43,6 +43,28 @@ tracks/0/keys = {
 "values": [ Vector2( 1239, 82 ), Vector2( 1239, 772 ) ]
 }
 
+[sub_resource type="DynamicFont" id=7]
+size = 86
+outline_size = 5
+outline_color = Color( 0.027451, 0.345098, 0.0235294, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.0313726, 0.0313726, 0.0313726, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.14902, 0.14902, 0.14902, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
 [sub_resource type="DynamicFont" id=5]
 size = 20
 outline_size = 2
@@ -67,7 +89,7 @@ __meta__ = {
 [node name="Border" type="ColorRect" parent="Control"]
 margin_right = 1024.0
 margin_bottom = 600.0
-color = Color( 0.105882, 0.109804, 0.105882, 1 )
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -140,6 +162,7 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
+visible = false
 anchor_bottom = 1.0
 margin_left = 72.0
 margin_top = 72.0
@@ -257,15 +280,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="Control"]
+margin_left = 152.0
+margin_top = 80.0
+margin_right = 872.0
+margin_bottom = 167.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+text = "SHAPE SHIFTER"
+
 [node name="leaderboard" type="Button" parent="."]
 margin_left = 904.0
 margin_top = 32.0
 margin_right = 985.0
 margin_bottom = 64.0
 theme = SubResource( 2 )
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = SubResource( 9 )
+custom_styles/normal = SubResource( 9 )
 custom_fonts/font = SubResource( 5 )
 text = "Score"
-flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
