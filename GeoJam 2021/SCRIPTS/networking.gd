@@ -3,7 +3,9 @@ extends Node
 
 var SERVER_PORT = 4242
 var LINODE = "li258-250.members.linode.com"  #Make Environtment var?
+
 var SERVER_DOMAIN = LINODE
+
 var LOCAL_HOST = "127.0.0.1"
 var peer
 

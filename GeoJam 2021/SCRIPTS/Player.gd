@@ -30,20 +30,19 @@ enum {
 }
 signal died
 
-var current_shape_list = 0
+var current_shape_list = 3
 
 var current_shape = basic_cube
 
 func _ready():
-	$Sprite.self_modulate = Color.brown
+	$Sprite.self_modulate = Color8(171, 13, 31)
 	next_shape.visible = false
 	previous_shape.visible = false
 	$Camera2D.pause_mode = Node.PAUSE_MODE_PROCESS
 
 func _physics_process(delta):
 	switch_shape()
-#	if Input.is_action_just_pressed("switch_1"):
-#		die()
+
 
 	match current_shape:
 
@@ -52,7 +51,7 @@ func _physics_process(delta):
 			$Camera2D.offset_v = -0.3
 			$Sprite.rotation_degrees = 0
 			$Sprite.texture = basic_cube_sprite
-			$Sprite.self_modulate = Color.brown
+			$Sprite.self_modulate = Color8(171, 13, 31)
 			scale = Vector2(1,1)
 			movement(10,150,200, delta)
 			
@@ -61,7 +60,7 @@ func _physics_process(delta):
 				if !is_on_floor():
 					can_switch = true
 					next_shape.visible = true
-					next_shape.self_modulate = Color.blue
+					next_shape.self_modulate = Color8(0, 118, 122)
 					next_shape.texture = bouncy_circle_sprite
 				else: 
 					next_shape.visible = false
@@ -71,17 +70,17 @@ func _physics_process(delta):
 		bouncy_circle:
 			$Camera2D.offset_v = 0
 			$Sprite.texture = bouncy_circle_sprite
-			$Sprite.self_modulate = Color.blue
+			$Sprite.self_modulate = Color8(0, 118, 122)
 			scale = Vector2(1,1)
 			Input.action_press("jump")
 			movement(10,0,400, delta)
 			
 			previous_shape.visible = true
-			previous_shape.self_modulate = Color.brown
+			previous_shape.self_modulate = Color8(171, 13, 31)
 			previous_shape.texture = basic_cube_sprite
 			if current_shape_list > 1:
 				next_shape.visible = true
-				next_shape.self_modulate = Color.darkgoldenrod
+				next_shape.self_modulate = Color8(215, 133, 33)
 				next_shape.texture = dash_triangle_sprite
 			else: next_shape.visible = false
 
@@ -89,17 +88,17 @@ func _physics_process(delta):
 			$Camera2D.offset_v = 0
 			$Sprite.rotation_degrees = 0
 			$Sprite.texture = dash_triangle_sprite
-			$Sprite.self_modulate = Color.darkgoldenrod
+			$Sprite.self_modulate = Color8(215, 133, 33)
 			scale = Vector2(1,1)
 			Input.action_release("jump")
 			
 			previous_shape.visible = true
-			previous_shape.self_modulate = Color.blue
+			previous_shape.self_modulate = Color8(0, 118, 122)
 			previous_shape.texture = bouncy_circle_sprite
 			
 			if current_shape_list > 2:
 				next_shape.visible = true
-				next_shape.self_modulate = Color.saddlebrown
+				next_shape.self_modulate = Color8(30, 66, 16)
 				next_shape.texture = basic_cube_sprite
 			else: next_shape.visible = false
 			
@@ -113,17 +112,19 @@ func _physics_process(delta):
 				time_stop = true
 			if Input.is_action_just_released("click"):
 				time_stop = false
+				$DashSound.play()
 				$Sprite.scale = Vector2(1,1)
 				velocity.x = transform.origin.direction_to(get_global_mouse_position()).x * 500
 			# Switches back to cube if hitting a wall as triangle
 			if is_on_wall():
 				current_shape = basic_cube
 			move_and_slide(velocity, Vector2.UP)
+
 		big_cube:
 			$Camera2D.offset_v = -0.3
 			$Sprite.rotation_degrees = 0
 			$Sprite.texture = basic_cube_sprite
-			$Sprite.self_modulate = Color.saddlebrown
+			$Sprite.self_modulate = Color8(30, 66, 16)
 			scale = Vector2(2,2)
 			velocity += Vector2.DOWN * delta * 200
 			previous_shape.visible = false
@@ -137,7 +138,9 @@ func _physics_process(delta):
 #				var tile_name = collision.collider.tile_set.tile_get_name(tile_id)
 				if collision.collider.get_cellv(tile_pos) == 1:
 					$CPUParticles2D.emitting = true
+					$BreakBlockSound.play()
 				collision.collider.break_blocks(tile_pos)
+
 				$CPUParticles2D.emitting = true
 				can_switch = false
 				Input.action_release("jump")
@@ -160,10 +163,14 @@ func movement(gravity, speed, jumpforce, delta): # Will take variables based on 
 		
 		if is_on_floor() and Input.is_action_just_pressed("jump"):
 			velocity.y = -jumpforce
+			if current_shape == basic_cube or current_shape == bouncy_circle:
+				$PlayerAnimation.play("CubeJump")
+				$JumpSound.play()
 			
 		if is_on_floor() and velocity.x != 0:
 			$Dust.emitting = true
-			
+#			if current_shape == basic_cube:
+#				$PlayerAnimation.play("CubeWalk")
 		velocity = move_and_slide(velocity, Vector2.UP)
 
 func switch_shape():
@@ -178,12 +185,12 @@ func switch_shape():
 		current_shape -= 1
 		switched = true
 		$PlayerAnimation.play("Switch")
-
+		$SwitchSound.play()
 	if Input.is_action_just_pressed("switch_next") and can_switch:
 		current_shape += 1
 		switched = true
 		$PlayerAnimation.play("Switch")
-
+		$SwitchSound.play()
 	if !switched:
 		return
 
@@ -209,6 +216,7 @@ func die():
 	dead = true
 	emit_signal("died")
 	$PlayerAnimation.play("Death")
+	$DeathSound.play()
 	$CanvasLayer/AnimationPlayer.play("Death")
 	yield(get_tree().create_timer(0.75), "timeout")
 	if checkpoint != null:
@@ -236,3 +244,10 @@ func shape_popup(shape_to_show):
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("spike"):
 		die()
+
+
+
+
+func _on_PlayerAnimation_animation_finished(anim_name):
+	if anim_name != "idle":
+		$PlayerAnimation.play("idle")
