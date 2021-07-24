@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
@@ -242,6 +242,14 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.180392, 0.180392, 0.180392, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.466667, 0.466667, 0.466667, 0.6 )
 
 [sub_resource type="StyleBoxFlat" id=19]
 bg_color = Color( 0.0470588, 0.0470588, 0.0470588, 1 )
@@ -533,11 +541,11 @@ margin_bottom = 59.0
 [node name="main menu" type="Button" parent="CanvasLayer2/escape_menu/VBoxContainer"]
 margin_right = 134.0
 margin_bottom = 17.0
-custom_styles/hover = SubResource( 19 )
+custom_styles/hover = SubResource( 24 )
 custom_styles/pressed = SubResource( 19 )
 custom_styles/focus = SubResource( 19 )
 custom_styles/disabled = SubResource( 19 )
-custom_styles/normal = SubResource( 19 )
+custom_styles/normal = SubResource( 24 )
 custom_fonts/font = SubResource( 16 )
 text = "Main menu"
 __meta__ = {

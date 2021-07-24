@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://SCRIPTS/TutorialScreen.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/Triangle.png" type="Texture" id=2]
 [ext_resource path="res://ASSETS/Circle.png" type="Texture" id=3]
 [ext_resource path="res://ASSETS/Bungee-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://ASSETS/ButtonStyle.stylebox" type="StyleBox" id=5]
+[ext_resource path="res://ASSETS/hoverbox.tres" type="StyleBox" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Transition"
@@ -33,6 +34,14 @@ size = 32
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color( 0.466667, 0.466667, 0.466667, 0.6 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
@@ -412,7 +421,7 @@ margin_left = 640.0
 margin_top = 16.0
 margin_right = 896.0
 margin_bottom = 65.0
-custom_styles/hover = SubResource( 6 )
+custom_styles/hover = SubResource( 16 )
 custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 6 )
 custom_styles/disabled = SubResource( 6 )
@@ -425,7 +434,7 @@ margin_left = 128.0
 margin_top = 16.0
 margin_right = 384.0
 margin_bottom = 65.0
-custom_styles/hover = SubResource( 7 )
+custom_styles/hover = ExtResource( 6 )
 custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 7 )
 custom_styles/disabled = SubResource( 7 )
