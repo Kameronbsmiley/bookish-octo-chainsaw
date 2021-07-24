@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
@@ -80,75 +80,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 4, 37.5 ), Vector2( 36, 37.5 ), Vector2( 36, 37.5 ), Vector2( 4, 37.5 ) ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("AnimationPlayer/box:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("AnimationPlayer/box2:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
 
 [sub_resource type="DynamicFont" id=7]
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 6 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 8.1, 8.1 )
 
 [sub_resource type="Animation" id=13]
-resource_name = "CubeJump"
-length = 0.4
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -8 ), Vector2( 0, -8 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.1, 0.7 ), Vector2( 0.7, 1 ), Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "CubeWalk"
-length = 0.3
-step = 0.05
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
@@ -156,25 +99,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 0.8 ), Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -8 ), Vector2( 0, -6.25 ), Vector2( 0, -8 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=12]
 length = 0.75
 step = 0.05
 tracks/0/type = "value"
@@ -202,23 +133,35 @@ tracks/1/keys = {
 "values": [ 0.0, -45.0, -135.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=11]
-length = 0.2
+[sub_resource type="Animation" id=15]
+length = 0.75
+step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
+tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 0, -8 ), Vector2( 0, -32 ), Vector2( 0, 16 ), Vector2( 0, -8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -45.0, -135.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=14]
-resource_name = "idle"
+[sub_resource type="Animation" id=16]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -256,6 +199,12 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+
+[sub_resource type="DynamicFont" id=17]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=18]
+font_data = ExtResource( 6 )
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 2
@@ -451,14 +400,13 @@ position = Vector2( 0, -8 )
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 9 )
+shape = SubResource( 14 )
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="."]
 anims/CubeJump = SubResource( 13 )
 anims/CubeWalk = SubResource( 12 )
-anims/Death = SubResource( 10 )
-anims/Switch = SubResource( 11 )
-anims/idle = SubResource( 14 )
+anims/Death = SubResource( 15 )
+anims/idle = SubResource( 16 )
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
@@ -479,5 +427,47 @@ stream = ExtResource( 10 )
 [node name="DashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 12 )
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="escape_menu" type="MarginContainer" parent="CanvasLayer2"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -67.0
+margin_top = -22.0
+margin_right = 67.0
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/escape_menu"]
+margin_right = 134.0
+margin_bottom = 50.0
+
+[node name="main menu" type="Button" parent="CanvasLayer2/escape_menu/VBoxContainer"]
+margin_right = 134.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 17 )
+text = "Main menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continue" type="Button" parent="CanvasLayer2/escape_menu/VBoxContainer"]
+margin_top = 27.0
+margin_right = 134.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 18 )
+text = "continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="animation_finished" from="PlayerAnimation" to="." method="_on_PlayerAnimation_animation_finished"]
+[connection signal="pressed" from="CanvasLayer2/escape_menu/VBoxContainer/main menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer2/escape_menu/VBoxContainer/continue" to="." method="_on_continue_pressed"]

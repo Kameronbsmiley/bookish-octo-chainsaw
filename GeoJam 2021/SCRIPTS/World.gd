@@ -14,6 +14,7 @@ func _ready():
 	$Exit.connect("body_entered", self, "leaderboard")
 	#Connect death  count
 	$Player.connect("died", self, "_on_player_died")
+	$Player.connect("mainmenu", self, "_on_mainmenu_pressed")
 
 func leaderboard(_ignore):
 	var leaderboard = leaderboard_tscn.instance()
@@ -36,3 +37,7 @@ func _on_Area2D_body_entered(body):
 func _on_player_died():
 	player_deaths += 1
 	$CanvasLayer/Deaths.text = "Deaths: " + str(player_deaths)
+
+func _on_mainmenu_pressed():
+	get_tree().change_scene("res://SCENES/MainMenu.tscn")
+	queue_free()

@@ -18,14 +18,10 @@ Button/styles/Button = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 20
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=6]
@@ -44,9 +40,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="DynamicFont" id=5]
-size = 20
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [node name="MainMenu" type="Control"]
