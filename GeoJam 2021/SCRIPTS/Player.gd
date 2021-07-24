@@ -181,12 +181,12 @@ func switch_shape():
 	var switched = false
 
 		
-	if Input.is_action_just_pressed("switch_previous") and can_switch:
+	if (Input.is_action_just_pressed("switch_previous") or Input.is_action_just_pressed("ui_left")) and can_switch:
 		current_shape -= 1
 		switched = true
 		$PlayerAnimation.play("Switch")
 		$SwitchSound.play()
-	if Input.is_action_just_pressed("switch_next") and can_switch:
+	if (Input.is_action_just_pressed("switch_next") or Input.is_action_just_pressed("ui_right"))and can_switch:
 		current_shape += 1
 		switched = true
 		$PlayerAnimation.play("Switch")

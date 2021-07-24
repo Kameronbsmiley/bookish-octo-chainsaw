@@ -1,0 +1,178 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://SCRIPTS/TutorialScreen.gd" type="Script" id=1]
+[ext_resource path="res://ASSETS/Triangle.png" type="Texture" id=2]
+[ext_resource path="res://ASSETS/Circle.png" type="Texture" id=3]
+[ext_resource path="res://ASSETS/Bungee-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Transition"
+tracks/0/type = "value"
+tracks/0/path = NodePath("BlackTransition:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1100, 40 ), Vector2( 1100, 693 ) ]
+}
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[node name="TutorialScreen" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Transition = SubResource( 1 )
+
+[node name="BGColor" type="ColorRect" parent="."]
+margin_right = 1021.0
+margin_bottom = 597.0
+color = Color( 0.815686, 0.815686, 0.67451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BasicControls" type="Control" parent="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/BasicControls"]
+margin_left = 320.0
+margin_top = 192.0
+margin_right = 704.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 4 )
+align = 1
+valign = 1
+
+[node name="BasicCube" type="Control" parent="Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BasicCubeImage" type="ColorRect" parent="Control/BasicCube"]
+margin_left = 80.0
+margin_top = 448.0
+margin_right = 208.0
+margin_bottom = 584.0
+color = Color( 0.670588, 0.0509804, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BouncyCircle" type="Control" parent="Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="BouncyCircleImage" type="TextureRect" parent="Control/BouncyCircle"]
+modulate = Color( 0, 0.462745, 0.478431, 1 )
+margin_left = 304.0
+margin_top = 448.0
+margin_right = 432.0
+margin_bottom = 584.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DashTriangle" type="Control" parent="Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="DashTriangleImage" type="TextureRect" parent="Control/DashTriangle"]
+modulate = Color( 0.843137, 0.521569, 0.129412, 1 )
+margin_left = 528.0
+margin_top = 448.0
+margin_right = 656.0
+margin_bottom = 584.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BigSquare" type="Control" parent="Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="BigSquareImage" type="ColorRect" parent="Control/BigSquare"]
+margin_left = 720.0
+margin_top = 328.0
+margin_right = 976.0
+margin_bottom = 584.0
+color = Color( 0.117647, 0.258824, 0.0627451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="Button" parent="."]
+margin_left = 640.0
+margin_top = 16.0
+margin_right = 896.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 2 )
+text = "Next"
+flat = true
+
+[node name="Previous" type="Button" parent="."]
+margin_left = 128.0
+margin_top = 16.0
+margin_right = 384.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 3 )
+text = "Previous"
+flat = true
+
+[node name="BlackTransition" type="ColorRect" parent="."]
+visible = false
+margin_left = -28.0
+margin_top = -57.0
+margin_right = 1072.0
+margin_bottom = 636.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
+[connection signal="pressed" from="Previous" to="." method="_on_Previous_pressed"]
