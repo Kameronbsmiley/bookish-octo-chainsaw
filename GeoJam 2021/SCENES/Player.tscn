@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://SCRIPTS/Player.gd" type="Script" id=1]
 [ext_resource path="res://ASSETS/box.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://ASSETS/Death.wav" type="AudioStream" id=11]
 [ext_resource path="res://ASSETS/dash.wav" type="AudioStream" id=12]
 [ext_resource path="res://ASSETS/collectshape.wav" type="AudioStream" id=13]
+[ext_resource path="res://ASSETS/ButtonStyle.stylebox" type="StyleBox" id=14]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.45 ), 0.0, 0.0, 0, 0 ]
@@ -242,8 +243,39 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.0470588, 0.0470588, 0.0470588, 1 )
+
 [sub_resource type="DynamicFont" id=16]
 font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.27451, 0.0627451, 0.0627451, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.490196, 0.0431373, 0.0431373, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.0705882, 0.231373, 0.0823529, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.0470588, 0.486275, 0.0784314, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="DynamicFont" id=17]
 font_data = ExtResource( 6 )
@@ -496,21 +528,46 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/escape_menu"]
 margin_right = 134.0
-margin_bottom = 50.0
+margin_bottom = 59.0
 
 [node name="main menu" type="Button" parent="CanvasLayer2/escape_menu/VBoxContainer"]
 margin_right = 134.0
-margin_bottom = 23.0
+margin_bottom = 17.0
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/focus = SubResource( 19 )
+custom_styles/disabled = SubResource( 19 )
+custom_styles/normal = SubResource( 19 )
 custom_fonts/font = SubResource( 16 )
 text = "Main menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="continue" type="Button" parent="CanvasLayer2/escape_menu/VBoxContainer"]
-margin_top = 27.0
+[node name="restart" type="Button" parent="CanvasLayer2/escape_menu/VBoxContainer"]
+margin_top = 21.0
 margin_right = 134.0
-margin_bottom = 50.0
+margin_bottom = 38.0
+custom_styles/hover = SubResource( 20 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/disabled = ExtResource( 14 )
+custom_styles/normal = SubResource( 23 )
+custom_fonts/font = SubResource( 16 )
+text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continue" type="Button" parent="CanvasLayer2/escape_menu/VBoxContainer"]
+margin_top = 42.0
+margin_right = 134.0
+margin_bottom = 59.0
+custom_styles/hover = SubResource( 21 )
+custom_styles/pressed = SubResource( 22 )
+custom_styles/focus = SubResource( 22 )
+custom_styles/disabled = SubResource( 22 )
+custom_styles/normal = SubResource( 22 )
 custom_fonts/font = SubResource( 17 )
 text = "continue"
 __meta__ = {
@@ -520,4 +577,5 @@ __meta__ = {
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="animation_finished" from="PlayerAnimation" to="." method="_on_PlayerAnimation_animation_finished"]
 [connection signal="pressed" from="CanvasLayer2/escape_menu/VBoxContainer/main menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer2/escape_menu/VBoxContainer/restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="CanvasLayer2/escape_menu/VBoxContainer/continue" to="." method="_on_continue_pressed"]

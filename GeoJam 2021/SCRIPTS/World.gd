@@ -2,6 +2,7 @@ extends Node2D
 
 signal game_over(player_name, best_time, difficulty)
 onready var leaderboard_tscn = preload("res://SCENES/leaderboard.tscn")
+onready var mainmenu_tscn = preload("res://SCENES/MainMenu.tscn")
 
 var time = 0.0
 var player_deaths = 0
@@ -39,5 +40,8 @@ func _on_player_died():
 	$CanvasLayer/Deaths.text = "Deaths: " + str(player_deaths)
 
 func _on_mainmenu_pressed():
-	get_tree().change_scene("res://SCENES/MainMenu.tscn")
+	var main_menu = mainmenu_tscn.instance()
+	main_menu.tut = false
 	queue_free()
+	get_node("/root").add_child(main_menu)
+	

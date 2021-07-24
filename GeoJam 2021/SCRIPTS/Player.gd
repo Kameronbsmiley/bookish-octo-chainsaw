@@ -181,7 +181,7 @@ func switch_shape():
 
 	var switched = false
 
-		
+
 	if (Input.is_action_just_pressed("switch_previous") or Input.is_action_just_pressed("ui_left")) and can_switch:
 		current_shape -= 1
 		switched = true
@@ -260,7 +260,16 @@ func _on_PlayerAnimation_animation_finished(anim_name):
 
 
 func _on_main_menu_pressed():
+	get_tree().paused = !get_tree().paused
 	emit_signal("mainmenu")
 
 func _on_continue_pressed():
 	$CanvasLayer2/escape_menu.hide()
+	get_tree().paused = !get_tree().paused
+
+
+func _on_restart_pressed():
+	print("reset")
+	get_tree().paused = !get_tree().paused
+	get_tree().reload_current_scene()
+	
