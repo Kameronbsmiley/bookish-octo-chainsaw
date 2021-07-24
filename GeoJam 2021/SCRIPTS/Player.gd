@@ -30,7 +30,7 @@ enum {
 }
 signal died
 
-var current_shape_list = 3
+var current_shape_list = 0
 
 var current_shape = basic_cube
 
